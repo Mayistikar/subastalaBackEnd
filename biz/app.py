@@ -124,7 +124,6 @@ def upload_file( request ):
         ExpiresIn=3600000
     )    
 
-    #return "upload finished!"
     return url
 
 
