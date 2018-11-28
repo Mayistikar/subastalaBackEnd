@@ -16,7 +16,7 @@ import boto3
 dbdir = "sqlite:///" + os.path.abspath(os.getcwd()) + "/db/database.db"
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = dbdir
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
