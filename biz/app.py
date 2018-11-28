@@ -3,6 +3,7 @@ from flask import request
 from flask import Response
 from flask import jsonify
 from flask import json
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
 #Import os to get pwd
@@ -15,6 +16,7 @@ import boto3
 dbdir = "sqlite:///" + os.path.abspath(os.getcwd()) + "/db/database.db"
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config["SQLALCHEMY_DATABASE_URI"] = dbdir
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
