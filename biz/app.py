@@ -19,7 +19,7 @@ import boto3
 dbdir = "sqlite:///" + os.path.abspath(os.getcwd()) + "/db/database.db"
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = dbdir
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
@@ -142,5 +142,5 @@ def upload_file( request ):
 
 if __name__ == "__main__":
     db.create_all()
-    #app.run(host="0.0.0.0", port=80)
-    app.run()
+    app.run(host="0.0.0.0", port=8080)
+    #app.run()
