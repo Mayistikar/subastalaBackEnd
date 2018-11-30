@@ -9,6 +9,9 @@ from flask_sqlalchemy import SQLAlchemy
 #Import os to get pwd
 import os
 
+#Import time manager
+from datetime import datetime
+
 #Import aws s3 library
 import boto3
 
@@ -67,16 +70,21 @@ def create_movie():
 @app.route('/set_image', methods=['POST'])
 def set_image():
 
-    url_image = upload_file( request )    
+    url_image = upload_file( request )
 
     new_image = Image(
-        name = request.headers['file_name'],
+        name = str(datetime.now())+'--'+request.headers['movie_id'],
         url = url_image,
         movie_id = request.headers['movie_id']
     )
     db.session.add( new_image )
     db.session.commit() 
     return "Image added!"
+
+@app.route('/time')
+def time():
+    print(datetime.now())
+    return str(datetime.now())
 
 @app.route('/get_movies')
 def get_movies():
